@@ -1,0 +1,107 @@
+.main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    .leftSection {
+        width: 60%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .formContainer {
+            width: 70%;
+            height: 50%;
+            margin-left: 20%;
+
+
+            .headingContainer {
+                width: 100%;
+                height: 20%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+
+                .mainHeading {
+                    font-family: DM Sans;
+                }
+
+                .subHeading {
+                    color: rgba(82, 82, 82, 1);
+                    font-family: DM Sans;
+                    font-size: 0.9rem;
+                    font-weight: 500;
+                }
+            }
+
+            .loginForm {
+                width: 100%;
+                height: 70%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+
+                .formFields {
+                    width: 60%;
+                    height: 18%;
+                    border: 2px solid rgba(194, 194, 194, 1);
+                    border-radius: 5px;
+                    color: rgba(82, 82, 82, 1);
+                    font-family: DM Sans;
+                    font-size: 1rem;
+                    font-weight: 500;
+                    padding: 5px;
+                }
+
+                .loginButton {
+                    width: 25%;
+                    height: 20%;
+                    background-color: rgba(237, 83, 83, 1);
+                    color: rgba(255, 255, 255, 1);
+                    font-family: DM Sans;
+                    font-size: 1rem;
+                    font-weight: 700;
+                    border-radius: 5px;
+                }
+            }
+
+            .verificationText {
+                width: 100%;
+                height: 10%;
+                color: rgba(82, 82, 82, 1);
+                font-family: DM Sans;
+                font-size: 0.9rem;
+
+                u {
+                    color: rgba(0, 0, 0, 1);
+                }
+
+                u:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .rightSection {
+        width: 40%;
+        height: 100%;
+
+        .image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .jobFinderHeading {
+            color: rgba(255, 255, 255, 1);
+            font-family: DM Sans;
+            font-size: 1.8rem;
+            font-weight: 500;
+            position: absolute;
+            top: 3%;
+            padding-left: 9%;
+        }
+    }
+}

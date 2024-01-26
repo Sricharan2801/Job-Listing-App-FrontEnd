@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = process.env.REACT_APP_BACKEND_URL;
+const baseUrl = import.meta.env.VITE_BACKEND_URL;
 
 export const getJobsByFilter = async (jobPosition, skills) => {
     try {

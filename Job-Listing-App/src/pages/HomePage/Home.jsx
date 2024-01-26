@@ -5,7 +5,7 @@ import HomeComponent from "../../components/HomeComponents/Home"
 
 const Home = () => {
   return (
-    <div >
+    <div className={styles.main}>
       <HomeComponent/>
     </div>
   )

@@ -1,0 +1,174 @@
+.main {
+    width: 100%;
+    height: 100%;
+
+    .header {
+        width: 100%;
+        height: 15%;
+        background-color: rgba(237, 83, 83, 1);
+        border-bottom-left-radius: 40px;
+        border-bottom-right-radius: 50px;
+        display: flex;
+        position: fixed;
+
+        .title {
+            color: rgba(255, 255, 255, 1);
+            font-family: DM Sans;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 2%;
+            margin-left: 3%;
+        }
+
+        .buttonContainer {
+            width: 20%;
+            height: 40%;
+            margin-left: 70%;
+            margin-top: 2%;
+
+            .buttons {
+                width: 40%;
+                height: 90%;
+                color: rgba(255, 255, 255, 1);
+                margin-left: 2%;
+                background-color: transparent;
+                border: 1px solid rgba(255, 255, 255, 1);
+                border-radius: 5px;
+                font-family: DM Sans;
+                font-size: 1.1rem;
+                font-weight: 500;
+            }
+
+            .buttons:hover {
+                color: rgba(237, 83, 83, 1);
+                background-color: rgba(255, 255, 255, 1);
+            }
+        }
+    }
+
+    .fltersContainer {
+        margin-top: 5em;
+        width: 100%;
+        height: 30%;
+        // background-color: aqua;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       
+        
+
+        .filters {
+            width: 60%;
+            height: 80%;
+            // background-color: beige;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            
+            box-shadow: 0px 0px 22px 4px rgba(255, 32, 32, 0.25);
+
+            .searchBar {
+                width: 70%;
+                height: 30%;
+                padding-left: 4%;
+                font-family: DM Sans;
+                font-size: 1rem;
+                font-weight: 500;
+                border: 2px solid rgba(227, 227, 227, 1);
+                border-radius: 10px;
+            }
+
+            .searchIcon {
+                width: 20px;
+                position: absolute;
+                top: 21%;
+                left: 29.5%;
+            }
+
+            .searchIcon:hover {
+                cursor: pointer;
+            }
+
+            .skillsContainer {
+                width: 70%;
+                height: 40%;
+                display: flex;
+                gap: 2%;
+                // background-color: aquamarine;
+
+                .skills {
+                    width: 20%;
+                    height: 80%;
+                    color: rgba(156, 156, 156, 1);
+                    font-family: Roboto;
+                    font-size: 1rem;
+                    font-weight: 500;
+                    padding-left: 15px;
+                    border: 2px solid rgba(206, 206, 206, 1);
+                    border-radius: 10px;
+                }
+
+                .selectedSkillsContainer{
+                    width: 80%;
+                    height: 80%;
+                    // background-color: rgb(155, 127, 255);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    .selectedSkill{
+                        width: 30%;
+                        height: 80%;
+                        background-color: rgb(240, 232, 232);
+                        display: flex;
+                        border-radius: 5px;
+                    
+                        .skillName{
+                            width: 70%;
+                            height: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            font-family: DM Sans;
+                            font-weight: 500;
+                            font-size: 0.8rem;
+                        }
+
+                        .crossSymbol{
+                            width: 30%;
+                            height: 100%;
+                            background-color: rgba(255, 107, 107, 1);
+                            color: rgba(255, 255, 255, 1);
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            font-family: DM Sans;
+                            font-weight: 800;
+                            font-size: 1.2rem;
+                        }
+
+
+                    }
+                }
+
+                .clearSkills{
+                   position: absolute;
+                   top: 35%;
+                   left: 72%;
+                   color: rgba(237, 83, 83, 1);
+                   font-family: DM Sans;
+                   font-size: 1rem;
+                   font-weight: 500;
+                }
+
+                .clearSkills:hover{
+                    cursor: pointer;
+                }
+            }
+
+        }
+    }
+
+
+}

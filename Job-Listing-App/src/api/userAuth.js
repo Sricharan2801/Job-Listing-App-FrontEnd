@@ -1,7 +1,7 @@
 import axios from "axios";
-const baseUrl = process.env.REACT_APP_BACKEND_URL
+const baseUrl = import.meta.env.VITE_BACKEND_URL;
 
-export const userRegistration = async (name, email, phone, password) => {
+export const userRegistration = async ({name, email, phone, password}) => {
 
     try {
         const requestUrl = `${baseUrl}/register`;
@@ -9,21 +9,21 @@ export const userRegistration = async (name, email, phone, password) => {
             name, email, phone, password
         }
         const response = await axios.post(requestUrl, reqPayLoad);
-        return response;
+        return response.data;
 
     } catch (error) {
         console.log(`error in userRegistration : ${error}`);
     }
 }
 
-export const userLogin = async (email, password) => {
+export const userLogin = async ({email, password}) => {
     try {
         const requestUrl = `${baseUrl}/login`;
         const reqPayLoad = {
             email, password
         }
         const response = await axios.post(requestUrl, reqPayLoad);
-        return response;
+        return response.data;
     } catch (error) {
         console.log(`error in userLogin : ${error}`);
     }
