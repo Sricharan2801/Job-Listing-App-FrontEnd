@@ -37,6 +37,8 @@ const RegistrationComponent = () => {
     const response = await userRegistration({...userDetails})
     
     if(response){
+      localStorage.setItem("token",response.token);
+      localStorage.setItem("userName",response.userName);
       navigate("/")
     }
 

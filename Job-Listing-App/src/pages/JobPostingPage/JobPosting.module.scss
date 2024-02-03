@@ -1,0 +1,25 @@
+.main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    .component {
+        width: 70%;
+        height: 100%;
+    }
+
+    .image {
+        width: 30%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .title {
+        position: absolute;
+        right: 2rem;
+        top: 2rem;
+        color: rgba(255, 255, 255, 1);
+        font-family: DM Sans;
+        font-weight: 600;
+    }
+}

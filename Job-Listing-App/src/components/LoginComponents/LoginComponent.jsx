@@ -4,10 +4,15 @@ import image from "../../assets/images/Image.png"
 
 import { useNavigate } from 'react-router-dom';
 import {userLogin} from "../../api/userAuth"
+import { useAuth } from '../../contexts/AuthContext';
 
 const LoginComponent = () => {
 
   const navigate = useNavigate();
+
+  const {login} = useAuth()
+
+
   const [userCredentials,setUserCredentials] = useState({
     email:"",
     password:""
@@ -35,6 +40,9 @@ const LoginComponent = () => {
     const response = await userLogin({...userCredentials});
 
     if(response){
+      localStorage.setItem("token",response.token);
+      localStorage.setItem("userName",response.userName);
+      login()
       navigate("/");
     }
   }

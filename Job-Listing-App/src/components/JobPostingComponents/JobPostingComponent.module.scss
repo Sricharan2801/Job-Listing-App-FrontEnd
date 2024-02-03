@@ -1,0 +1,106 @@
+// jobPostingComponent.module.scss
+.main {
+    width: 100%;
+    height: 100%;
+
+    .headingContainer {
+        width: 100%;
+        height: 10%;
+        display: flex;
+        align-items: center;
+
+        .heading {
+            font-family: DM Sans;
+            font-weight: 700;
+            padding-left: 10%;
+        }
+    }
+
+    .jobForm {
+        width: 100%;
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        .fieldContainer {
+            width: 100%;
+            display: flex;
+            gap: 2%;
+            align-items: center;
+
+            .labelContainer {
+                width: 20%; // Adjust the width according to your design
+                display: flex;
+                justify-content: flex-start; // Align labels to the right for consistent spacing
+                margin-left: 10%;
+
+                .lable {
+                    font-family: DM Sans;
+                    font-size: 1.1rem;
+
+                }
+            }
+
+            .inputContainer {
+                width: 50%; // Adjust the width according to your design
+
+
+
+                .inputBox {
+                    width: 60%;
+                    border-radius: 5px;
+                    font-family: DM Sans;
+                    font-size: 1rem;
+                    border: 1px solid rgba(194, 194, 194, 1);
+                    color: rgba(173, 173, 173, 1);
+                    padding-left: 5px;
+                }
+
+                .dropDown {
+                    width: 25%;
+                    border-radius: 5px;
+                    font-family: DM Sans;
+                    font-size: 1rem;
+                    border: 1px solid rgba(194, 194, 194, 1);
+                    color: rgba(173, 173, 173, 1);
+                    padding-left: 5px;
+                }
+
+                .textBox {
+                    width: 80%;
+                    border-radius: 5px;
+                    font-family: DM Sans;
+                    font-size: 1rem;
+                    border: 1px solid rgba(194, 194, 194, 1);
+                    color: rgba(173, 173, 173, 1);
+                    padding-left: 5px;
+                }
+            }
+        }
+
+        .buttonsContainer {
+            width: 80%;
+            height: 10%;
+            display: flex;
+            gap: 5%;
+            justify-content: flex-end;
+            align-items: center;
+
+            .cancelButton,
+            .addOrEditBtn {
+                width: 12%;
+                height: 70%;
+                font-family: DM Sans;
+                font-size: 1rem;
+                border-radius: 5px;
+            }
+
+            .cancelButton:hover,
+            .addOrEditBtn:hover {
+                background-color: rgba(237, 83, 83, 1);
+                color: rgba(255, 255, 255, 1);
+            }
+        }
+    }
+}
