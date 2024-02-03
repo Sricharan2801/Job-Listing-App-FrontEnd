@@ -4,7 +4,8 @@ import image from "../../assets/images/image.png"
 
 import { useNavigate } from 'react-router-dom'
 import { userRegistration } from "../../api/userAuth"
-import { useState } from "react"
+import { useState } from "react";
+import toast from 'react-hot-toast'
 
 const RegistrationComponent = () => {
 
@@ -39,6 +40,7 @@ const RegistrationComponent = () => {
     if(response){
       localStorage.setItem("token",response.token);
       localStorage.setItem("userName",response.userName);
+      toast("Registration successful")
       navigate("/")
     }
 

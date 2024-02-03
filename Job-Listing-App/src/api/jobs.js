@@ -1,6 +1,7 @@
 import axios from "axios";
 import { json } from "react-router-dom";
 const baseUrl = import.meta.env.VITE_BACKEND_URL;
+import toast from "react-hot-toast";
 
 export const getJobsByFilter = async ({ jobPosition, skills }) => {
     try {
@@ -14,6 +15,7 @@ export const getJobsByFilter = async ({ jobPosition, skills }) => {
         return response.data
     } catch (error) {
         console.log(`error in getJobsByFilter: ${error}`);
+        toast("Something went wrong...")
 
     }
 }
@@ -27,6 +29,7 @@ export const getJobDetails = async (jobId) => {
         return response.data
     } catch (error) {
         console.log(`error in getJobDetails : ${error}`);
+        toast("Something went wrong...")
     }
 }
 
@@ -80,6 +83,7 @@ export const postJob = async ({ companyName,
 
     } catch (error) {
         console.log(`error in postJob : ${error}`);
+        toast("Something went wrong...")
     }
 }
 
@@ -137,5 +141,6 @@ export const updateJob = async (
         return response;
     } catch (error) {
         console.log(`error in updateJob : ${error}`);
+        toast("Something went wrong...")
     }
 };

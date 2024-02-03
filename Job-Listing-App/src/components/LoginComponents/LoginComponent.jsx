@@ -1,49 +1,55 @@
-import {React,useState} from 'react';
+import { React, useState } from 'react';
 import styles from "./loginComponent.module.scss"
 import image from "../../assets/images/Image.png"
 
 import { useNavigate } from 'react-router-dom';
-import {userLogin} from "../../api/userAuth"
+import { userLogin } from "../../api/userAuth"
 import { useAuth } from '../../contexts/AuthContext';
+import toast from 'react-hot-toast';
 
 const LoginComponent = () => {
 
   const navigate = useNavigate();
 
-  const {login} = useAuth()
+  const { login } = useAuth()
 
 
-  const [userCredentials,setUserCredentials] = useState({
-    email:"",
-    password:""
+  const [userCredentials, setUserCredentials] = useState({
+    email: "",
+    password: ""
   })
 
-  const navigateToSignUp = ()=>{
+  const navigateToSignUp = () => {
     navigate("/register")
   }
 
-  const changeHandler = (e)=>{
+  const changeHandler = (e) => {
     setUserCredentials({
       ...userCredentials,
-      [e.target.name]:e.target.value
+      [e.target.name]: e.target.value
     })
   }
 
-  const submitHandler = async(e)=>{
+  const submitHandler = async (e) => {
     e.preventDefault();
 
-    if(!userCredentials.email || !userCredentials.password){
-      alert("fileds are required");
+    if (!userCredentials.email || !userCredentials.password) {
+      toast("fileds are required");
       return;
     }
 
-    const response = await userLogin({...userCredentials});
+    try {
+      const response = await userLogin({ ...userCredentials });
 
-    if(response){
-      localStorage.setItem("token",response.token);
-      localStorage.setItem("userName",response.userName);
-      login()
-      navigate("/");
+      if (response) {
+        localStorage.setItem("token", response.token);
+        localStorage.setItem("userName", response.userName);
+        login()
+        toast("Login Sucessfull")
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -59,25 +65,25 @@ const LoginComponent = () => {
             <p className={styles.subHeading}>Your personal job finder is here</p>
           </div>
 
-          <form action="" className={styles.loginForm} onSubmit={(e)=>submitHandler(e)}>
+          <form action="" className={styles.loginForm} onSubmit={(e) => submitHandler(e)}>
             <input type="text"
               className={styles.formFields}
-              placeholder='Email' 
+              placeholder='Email'
               name='email'
-              onChange={(e)=>changeHandler(e)}/>
+              onChange={(e) => changeHandler(e)} />
 
             <input type="password"
               className={styles.formFields}
-              placeholder='Password' 
+              placeholder='Password'
               name='password'
-              onChange={(e)=>changeHandler(e)}/>
+              onChange={(e) => changeHandler(e)} />
 
             <button className={styles.loginButton}>Sign in</button>
 
           </form>
 
           <p className={styles.verificationText}>Don’t have an account?
-          &nbsp; <u onClick={()=>navigateToSignUp()}>Sign Up</u>
+            &nbsp; <u onClick={() => navigateToSignUp()}>Sign Up</u>
           </p>
 
         </div>

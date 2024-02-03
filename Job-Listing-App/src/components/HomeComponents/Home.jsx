@@ -5,6 +5,9 @@ import searchIcon from "../../assets/icons/searchIcon.png"
 import { useAuth } from '../../contexts/AuthContext'
 import { DEFAULT_SKILLS } from "../../utils/skills"
 import { getJobsByFilter } from "../../api/jobs"
+import companySizeIcon from "../../assets/icons/companySize.png"
+import rupeeIcon from "../../assets/icons/rupeeLogo.png"
+import indianFlag from "../../assets/icons/indianFlag.png"
 
 const Home = () => {
   const navigate = useNavigate();
@@ -13,7 +16,9 @@ const Home = () => {
 
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [search, setSearch] = useState("");
+  const [jobDetails, setJobDetails] = useState()
 
+  const userName = localStorage.getItem("userName")
 
   const navigateToLogin = () => {
     navigate("/login")
@@ -67,10 +72,10 @@ const Home = () => {
     }
 
     const response = await getJobsByFilter(reqPayLoad)
-    console.log(response);
+    setJobDetails(response?.jobsDetails);
   }
 
-  const keyHandler = (e) => {
+  const keyHandler = async(e) => {
     if (!search.trim()) return;
 
     if (e.keyCode === 13) {
@@ -78,7 +83,23 @@ const Home = () => {
     }
   }
 
-  // console.log(selectedSkills);
+  const viewDetails = (jobId)=>{
+      navigate("/jobDetails",{
+        state:{
+          jobId : jobId
+        }
+      })
+  }
+ 
+  const editJob = (jobId,jobData) => {
+    navigate("/jobPosting", {
+        state: {
+            id: jobId,
+            data: jobData,
+            edit: true
+        }
+    })
+}
 
   return (
     <div className={styles.main}>
@@ -91,7 +112,7 @@ const Home = () => {
             isLoggedIn ?
               <>
                 <button className={styles.logoutBtn} onClick={() => logoutBtn()}>Logout</button>
-                <p className={styles.welcomeText}>Hello! Recruiter</p>
+                <p className={styles.welcomeText}>Hello! {userName}</p>
               </> :
               <>
                 <button className={styles.buttons} onClick={() => navigateToLogin()}>Login</button>
@@ -132,7 +153,6 @@ const Home = () => {
 
             </select>
 
-
             <div className={styles.selectedSkillsContainer}>
               {
                 selectedSkills.map(skill => {
@@ -148,7 +168,6 @@ const Home = () => {
                   </div>
                 })
               }
-
             </div>
 
             {
@@ -160,10 +179,72 @@ const Home = () => {
 
             <p className={styles.clearSkills} onClick={() => clearBtn()}>clear</p>
           </div>
+
         </div>
       </div>
 
       {/* <button onClick={() => navigate("/jobDetails/65bb4b7964382e7bd9300d21")}>abcd</button> */}
+
+      <div className={styles.jobsContainer}>
+
+        {
+          jobDetails?.map(job => {
+            return <div className={styles.jobCard}>
+              <img src={job?.addLogoUrl} alt="" className={styles.companyLogo} />
+
+              <div className={styles.basicDetails}>
+
+                <h3 className={styles.jobPosition}>{job?.jobPosition}</h3>
+
+                <div className={styles.salaryAndLocation}>
+                  <img src={companySizeIcon} alt="" className={styles.logos} />
+                  <p className={styles.info}>{job?.companySize}</p>
+
+                  <img src={rupeeIcon} alt="" className={styles.logos} />
+                  <p className={styles.info}>{job?.monthlySalary}</p>
+
+                  <img src={indianFlag} alt="" className={styles.indianFlag} />
+                  <p className={styles.info}>{job?.location}</p>
+                </div>
+
+                <div className={styles.jobType}>
+                  <p className={styles.jobTypeInfo}>{job?.remoteOrOffice}</p>
+                  <p className={styles.jobTypeInfo}>{job?.jobType}</p>
+                </div>
+
+              </div>
+
+              <div className={styles.skillsAndButtons}>
+
+                <div className={styles.skillsContainer}>
+                  {
+                    job?.skillsRequired.map(skill => {
+                      return <div className={styles.skills}>{skill}</div>
+                    })
+                  }
+                </div>
+
+                <div className={styles.buttonsContainer}>
+                  {
+                    isLoggedIn ? <button className={styles.buttons} onClick={()=>editJob(job._id,job)}>Edit Job</button> : <></>
+                  }
+                  <button className={styles.buttons} onClick={()=>viewDetails(job._id)}>View Details</button>
+                </div>
+
+              </div>
+
+
+            </div>
+          })
+        }
+
+      </div>
+
+
+
+
+
+
 
     </div>
   )

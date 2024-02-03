@@ -5,19 +5,29 @@ import styles from "./jobPostingComponent.module.scss";
 import { postJob, updateJob } from "../../api/jobs";
 
 const JobPosting = () => {
-  const navigate = useNavigate()
-  const { state } = useLocation()
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  let jobId;
+  console.log(state);
 
-  const str = JSON.stringify(state?.data?.skillsRequired)
-  const arr = JSON.parse(str)
-  const str1 = arr.join(", ")
-
-  const jobId = state.id;
   const [isEditExistingPost, setIsEditExistingPost] = useState(false);
 
-  useEffect(() => {
-    if (state.edit === true) setIsEditExistingPost(true)
-  }, [])
+  if (state !== null) {
+
+    jobId = state.id
+    useEffect(() => {
+      setIsEditExistingPost(true);
+      
+    }, [])
+
+    const str = JSON.stringify(state?.data?.skillsRequired)
+    const arr = JSON.parse(str)
+    const str1 = arr.join(",")
+
+    
+  }
+
+  
 
 
   const [jobDetails, setJobDetails] = useState({
@@ -30,7 +40,7 @@ const JobPosting = () => {
     location: "" || state?.data?.location,
     jobDescription: "" || state?.data?.jobDescription,
     aboutCompany: "" || state?.data?.aboutCompany,
-    skillsRequired: "" || str1,
+    skillsRequired: "" || state?.data?.skillsRequired,
     information: "" || state?.data?.information,
     duration: "" || state?.data?.duration,
     companySize: "" || state?.data?.companySize
@@ -40,6 +50,7 @@ const JobPosting = () => {
 
   const cancelBtn = () => {
     navigate("/")
+    setIsEditExistingPost(false)
   }
 
   const changeHandler = (e) => {
@@ -65,19 +76,6 @@ const JobPosting = () => {
     e.preventDefault()
 
     const response = await updateJob(jobId, {
-      // companyName: jobDetails.companyName,
-      // addLogoUrl: jobDetails.addLogoUrl,
-      // jobPosition: jobDetails.jobPosition,
-      // monthlySalary: jobDetails.monthlySalary,
-      // jobType: jobDetails.jobType,
-      // remoteOrOffice: jobDetails.remoteOrOffice,
-      // location: jobDetails.location,
-      // jobDescription: jobDetails.jobDescription,
-      // aboutCompany: jobDetails.aboutCompany,
-      // skillsRequired: jobDetails.skillsRequired,
-      // information: jobDetails.information,
-      // duration: jobDetails.duration,
-      // companySize: jobDetails.companySize,
       ...jobDetails
     });
 
@@ -105,7 +103,7 @@ const JobPosting = () => {
               className={styles.inputBox}
               placeholder='Enter your company name here'
               name='companyName'
-              value={jobDetails?.companyName}
+              value={isEditExistingPost ? jobDetails?.companyName : ""}
               onChange={(e) => changeHandler(e)}
             />
           </div>
@@ -125,7 +123,7 @@ const JobPosting = () => {
               className={styles.inputBox}
               placeholder='Enter the link'
               name='addLogoUrl'
-              value={jobDetails?.addLogoUrl}
+              value={isEditExistingPost ? jobDetails?.addLogoUrl : ""}
               onChange={(e) => changeHandler(e)}
             />
           </div>
@@ -145,7 +143,7 @@ const JobPosting = () => {
               className={styles.inputBox}
               placeholder='Enter job position'
               name='jobPosition'
-              value={jobDetails?.jobPosition}
+              value={isEditExistingPost ? jobDetails?.jobPosition : ""}
               onChange={(e) => changeHandler(e)}
             />
           </div>
@@ -164,7 +162,7 @@ const JobPosting = () => {
               className={styles.inputBox}
               placeholder='Enter Amount in rupees'
               name='monthlySalary'
-              value={jobDetails?.monthlySalary}
+              value={isEditExistingPost ? jobDetails?.monthlySalary : ""}
               onChange={(e) => changeHandler(e)}
             />
           </div>
@@ -182,7 +180,7 @@ const JobPosting = () => {
             <select
               className={styles.dropDown}
               name='jobType'
-              value={jobDetails?.jobType}
+              value={isEditExistingPost ? jobDetails?.jobType : ""}
               onChange={(e) => changeHandler(e)}
             >
               <option value="" disabled selected hidden> Select</option>
@@ -204,7 +202,7 @@ const JobPosting = () => {
             <select
               className={styles.dropDown}
               name='remoteOrOffice'
-              value={jobDetails?.remoteOrOffice}
+              value={isEditExistingPost ? jobDetails?.remoteOrOffice : ""}
               onChange={(e) => changeHandler(e)}
             >
               <option value="" disabled selected hidden> Select</option>
@@ -228,7 +226,7 @@ const JobPosting = () => {
               className={styles.inputBox}
               placeholder='Enter Location'
               name='location'
-              value={jobDetails?.location}
+              value={isEditExistingPost ? jobDetails?.location : ""}
               onChange={(e) => changeHandler(e)}
             />
           </div>
@@ -247,7 +245,7 @@ const JobPosting = () => {
               placeholder='Type the job description'
               className={styles.textBox}
               name='jobDescription'
-              value={jobDetails?.jobDescription}
+              value={isEditExistingPost ? jobDetails?.jobDescription : ""}
               onChange={(e) => changeHandler(e)}
             />
           </div>
@@ -266,7 +264,7 @@ const JobPosting = () => {
               placeholder='Type about your company'
               className={styles.textBox}
               name='aboutCompany'
-              value={jobDetails.aboutCompany}
+              value={isEditExistingPost ? jobDetails.aboutCompany : ""}
               onChange={(e) => changeHandler(e)}
             />
           </div>
@@ -286,7 +284,7 @@ const JobPosting = () => {
               className={styles.inputBox}
               placeholder='Enter the must-have skills (comma-separated)'
               name='skillsRequired'
-              value={jobDetails.skillsRequired}
+              value={isEditExistingPost ? jobDetails.skillsRequired : ""}
               onChange={(e) => changeHandler(e)}
             />
           </div>
@@ -306,7 +304,7 @@ const JobPosting = () => {
               className={styles.inputBox}
               placeholder='Enter the additional information'
               name='information'
-              value={jobDetails?.information}
+              value={isEditExistingPost ? jobDetails?.information : ""}
               onChange={(e) => changeHandler(e)}
             />
           </div>
@@ -326,7 +324,7 @@ const JobPosting = () => {
               className={styles.inputBox}
               placeholder='Enter Duration'
               name='duration'
-              value={jobDetails?.duration}
+              value={isEditExistingPost ? jobDetails?.duration : ""}
               onChange={(e) => changeHandler(e)}
             />
           </div>
@@ -346,7 +344,7 @@ const JobPosting = () => {
               className={styles.inputBox}
               placeholder='Enter company size'
               name='companySize'
-              value={jobDetails?.companySize}
+              value={isEditExistingPost ? jobDetails?.companySize : ""}
               onChange={(e) => changeHandler(e)}
             />
           </div>

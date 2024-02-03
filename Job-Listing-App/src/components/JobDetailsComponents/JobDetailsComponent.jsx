@@ -3,7 +3,7 @@ import styles from "./jobDetailsComponent.module.css"
 import salaryLogo from "../../assets/icons/money.png"
 import calenderLogo from "../../assets/icons/calender.png"
 import { useAuth } from '../../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import { getJobDetails } from "../../api/jobs"
 
 const JobDetailsComponent = () => {
@@ -12,6 +12,9 @@ const JobDetailsComponent = () => {
 
     // console.log(jobData.jobType);
     const [isInternShip, setIsInternShip] = useState(false)
+
+    const {state} = useLocation()
+    
 
     useEffect(() => {
         if (jobData.jobType === "InternShip") {
@@ -43,7 +46,8 @@ const JobDetailsComponent = () => {
 
     const fetchJobDetails = async () => {
         try {
-            const jobId = window.location.pathname.split("/").pop()
+            
+            const jobId = state.jobId
             if (!jobId) return;
 
             const response = await getJobDetails(jobId);

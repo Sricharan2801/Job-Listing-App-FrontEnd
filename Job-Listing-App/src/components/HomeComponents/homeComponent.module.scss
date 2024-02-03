@@ -1,7 +1,8 @@
 .main {
     width: 100%;
-    height: 100%;
+    max-height: 100vh;
     font-family: DM Sans;
+    overflow: auto;
 
     .header {
         width: 100%;
@@ -30,14 +31,14 @@
             align-items: center;
             justify-content: space-between;
 
-            .logoutBtn{
+            .logoutBtn {
                 color: white;
                 background-color: transparent;
                 font-size: 1.1rem;
                 font-weight: 500;
             }
 
-            .welcomeText{
+            .welcomeText {
                 color: white;
                 font-size: 1.1rem;
                 font-weight: 500;
@@ -63,15 +64,13 @@
     }
 
     .fltersContainer {
-        margin-top: 5em;
+        margin-top: 5rem;
         width: 100%;
-        height: 30%;
+        height: 30vh;
         // background-color: aqua;
         display: flex;
         justify-content: center;
         align-items: center;
-       
-        
 
         .filters {
             width: 80%;
@@ -81,11 +80,10 @@
             flex-direction: column;
             justify-content: space-around;
             align-items: center;
-            
             box-shadow: 0px 0px 22px 4px rgba(255, 32, 32, 0.25);
 
             .searchBar {
-                width: 70%;
+                width: 80%;
                 height: 30%;
                 padding-left: 4%;
                 font-size: 1rem;
@@ -98,7 +96,7 @@
                 width: 20px;
                 position: absolute;
                 top: 21%;
-                left: 22.5%;
+                left: 19%;
             }
 
             .searchIcon:hover {
@@ -106,7 +104,7 @@
             }
 
             .skillsContainer {
-                width: 70%;
+                width: 80%;
                 height: 40%;
                 display: flex;
                 gap: 2%;
@@ -124,23 +122,24 @@
                     border-radius: 10px;
                 }
 
-                .selectedSkillsContainer{
-                    width: 60%;
+                .selectedSkillsContainer {
+                    width: 50%;
                     height: 80%;
                     // background-color: rgb(155, 127, 255);
                     display: flex;
                     justify-content: center;
                     align-items: center;
 
-                    .selectedSkill{
+
+                    .selectedSkill {
                         width: 25%;
                         height: 80%;
                         background-color: rgb(240, 232, 232);
                         display: flex;
                         justify-content: space-around;
                         border-radius: 5px;
-                    
-                        .skillName{
+
+                        .skillName {
                             width: 70%;
                             height: 100%;
                             display: flex;
@@ -150,7 +149,7 @@
                             font-size: 0.8rem;
                         }
 
-                        .crossSymbol{
+                        .crossSymbol {
                             width: 30%;
                             height: 100%;
                             background-color: rgba(255, 107, 107, 1);
@@ -164,8 +163,8 @@
                     }
                 }
 
-                .addJobBtn{
-                    width: 18%;
+                .addJobBtn {
+                    width: 15%;
                     height: 80%;
                     border-radius: 10px;
                     color: white;
@@ -175,20 +174,141 @@
                     background-color: rgba(237, 83, 83, 1);
                 }
 
-               
-
-                .clearSkills{
-                   position: absolute;
-                   top: 35%;
-                   left: 82%;
-                   color: rgba(237, 83, 83, 1);
-                   font-size: 1rem;
-                   font-weight: 500;
+                .clearSkills {
+                    color: rgba(237, 83, 83, 1);
+                    font-size: 1rem;
+                    font-weight: 500;
+                    display: flex;
+                    align-items: flex-end;
+                    margin-bottom: 2%;
                 }
 
-                .clearSkills:hover{
+                .clearSkills:hover {
                     cursor: pointer;
                 }
+            }
+        }
+    }
+
+    .jobsContainer {
+        width: 80%;
+        // background-color: aqua;
+        margin-left: 10%;
+        margin-top: 1%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        gap: 2%;
+
+        .jobCard {
+            width: 95%;
+            // background-color: rgb(54, 201, 103);
+            box-shadow: 0px 0px 22px 4px rgba(255, 32, 32, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-top: 1.5%;
+            margin-bottom: 1%;
+
+            .companyLogo {
+                width: 5%;
+                height: 5%;
+            }
+
+            .basicDetails {
+                width: 50%;
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                .jobPosition {
+                    font-size: 1rem;
+                }
+
+                .salaryAndLocation {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    gap: 3%;
+
+                    .info {
+                        font-family: Roboto;
+                        font-weight: 500;
+                        font-size: 0.8rem;
+                        color: rgba(156, 156, 156, 1);
+                    }
+
+                    .indianFlag {
+                        width: 5%;
+                    }
+                }
+
+                .jobType {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    gap: 5%;
+
+                    .jobTypeInfo {
+                        color: rgba(237, 83, 83, 1);
+                        font-family: Roboto;
+                        font-size: 0.8rem;
+                        font-weight: 500;
+                    }
+                }
+            }
+
+            .skillsAndButtons {
+                width: 40%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                // background-color: rgb(57, 133, 133);
+
+                .skillsContainer {
+                    display: flex;
+                    justify-content: flex-end;
+                    padding: 5px;
+                    gap: 2%;
+
+                    .skills {
+                        font-size: 0.8rem;
+                        padding: 5px;
+                        width: 20%;
+                        background-color: rgba(255, 238, 238, 1);
+                        border-radius: 5px;
+                        text-align: center;
+                    }
+                }
+
+                .buttonsContainer {
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    padding: 5px;
+                    gap: 2%;
+
+
+                    .buttons {
+                        color: rgba(237, 83, 83, 1);
+                        border: 1.5px solid rgba(237, 83, 83, 1);
+                        width: 30%;
+                        padding: 5px;
+                        border-radius: 5px;
+                        margin-right: 2%;
+                        font-weight: 500;
+                        background-color: white;
+                    }
+
+                    .buttons:hover {
+                        color: white;
+                        background-color: rgba(237, 83, 83, 1);
+                    }
+                }
+
             }
 
         }
